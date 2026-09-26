@@ -1,0 +1,68 @@
+{
+  "main": "outliers-crm-02-rules",
+  "main_commit": "d6f585288624d004148690354c603abc80bbff31",
+  "mac": "outliers-crm-02-rules-mac",
+  "macgen_commit": "50a7935",
+  "date": "2026-09-26",
+  "fingerprint": "ae4697c9a3432af02a0f740e32cf21c05e9562c51890a0b36b6167c4fe9e0df3",
+  "left_out_of_fingerprint": [
+    ".mac-version.json",
+    "guide/Layer-2-The-Rules (Mac).pdf",
+    "guide/Layer-2-The-Rules.html"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "category": "same",
+      "sha256": "271540188ae129e9d99d3a8ad965db71df8c7cd7abfacb3580f60a5b61de5c1a"
+    },
+    {
+      "path": "README.md",
+      "category": "changed",
+      "sha256": "8b8b7473026bdd9bf4868ef595a0d4dd606470f43cbecf29cdb4ca66de0e7057"
+    },
+    {
+      "path": "WHAT-I-STOLE.md",
+      "category": "same",
+      "sha256": "561fdb42830e65809f627717216f1efc50f63e1f08f951491c03f676c00ba643"
+    },
+    {
+      "path": "crm/_schema/person.json",
+      "category": "same",
+      "sha256": "3611032340278fb76949cf91e49510f1f5caa558b58de7748f509d55b28f7bc8"
+    },
+    {
+      "path": "crm/identity.py",
+      "category": "same",
+      "sha256": "80c08f3dc62a8af792f1e1d80f420f0f60fa96e1cde64abcc394c21990c30b35"
+    },
+    {
+      "path": "crm/schema.py",
+      "category": "same",
+      "sha256": "7a6f89fd7e5d6a3cad95a2a0b15597b18f23f8e90e5bdd150a912c4bd02a244f"
+    },
+    {
+      "path": "guide/Layer-2-The-Rules (Mac).pdf",
+      "category": "left out of the fingerprint"
+    },
+    {
+      "path": "guide/Layer-2-The-Rules.html",
+      "category": "left out of the fingerprint"
+    },
+    {
+      "path": "install.py",
+      "category": "same",
+      "sha256": "1403a814c30d16fe704b5d0e53f8fbd7734dae9414b77468eab8ba03ee54f56d"
+    },
+    {
+      "path": "tests/test_identity_resolution.py",
+      "category": "same",
+      "sha256": "4d6d07f214e973c3b5bee09fdb53e9eefd9390d5302a9bde1ae14605874d0d44"
+    },
+    {
+      "path": "tests/test_schema_contract.py",
+      "category": "same",
+      "sha256": "09c0f08e4c18b8dc877e1551efc0fa3b401f9972b08d5b942d7762ec3eee1a9c"
+    }
+  ]
+}

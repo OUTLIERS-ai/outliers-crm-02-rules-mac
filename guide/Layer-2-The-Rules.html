@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en-GB"><head><meta charset="utf-8"><title>Layer 2 &middot; The Rules</title><style>
+  @page { size: A4; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --paper:#F3EEE3; --vellum:#E7DEC9; --ink:#14110C; --ox:#6E1A18; --brass:#B08A3E; }
+  body { font-family: Constantia, Georgia, serif; color:var(--ink); background:var(--paper); }
+  .page { width:210mm; height:296mm; padding:20mm 22mm; background:var(--paper);
+          page-break-after:always; position:relative; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  .mono { font-family: Consolas,"Courier New",monospace; letter-spacing:.16em; text-transform:uppercase; }
+  .label { font-size:8.5pt; color:var(--brass); margin-bottom:3mm; }
+  h1 { font-size:34pt; font-weight:bold; line-height:1.1; }
+  h2 { font-size:19pt; font-weight:bold; margin-bottom:3mm; line-height:1.18; }
+  h3 { font-family:Consolas,monospace; font-size:8pt; letter-spacing:.16em; text-transform:uppercase;
+       color:var(--brass); margin:6mm 0 1.5mm 0; }
+  .deck { font-size:11pt; line-height:1.45; color:var(--ox); margin-bottom:5mm; }
+  p { font-size:10.5pt; line-height:1.5; margin-bottom:3mm; }
+  li { font-size:10.5pt; line-height:1.5; margin-bottom:1.5mm; margin-left:5mm; }
+  .two { display:flex; gap:8mm; margin-top:4mm; }
+  .two > div { flex:1; }
+  figure { margin:5mm 0; }
+  .cap { font-family:Consolas,monospace; font-size:7pt; letter-spacing:.1em; text-transform:uppercase;
+         color:var(--brass); text-align:center; margin-top:2mm; }
+  .box { border-left:2mm solid var(--ox); background:var(--vellum); padding:3.5mm 4.5mm; margin-top:5mm; }
+  .box .mono { font-size:7.5pt; color:var(--ox); display:block; margin-bottom:1.2mm; }
+  .box p { margin:0; }
+  .cmd { font-family:Consolas,monospace; font-size:9.5pt; background:var(--ink); color:var(--paper);
+         padding:3mm 4mm; margin:3mm 0; line-height:1.6; }
+  .footer { position:absolute; bottom:10mm; left:22mm; right:22mm; display:flex;
+            justify-content:space-between; font-size:7pt; color:var(--brass); }
+  .pgno { font-family:Consolas,monospace; font-size:7pt; letter-spacing:.1em; color:var(--brass); }
+  .pos { position:absolute; top:19mm; right:22mm; width:48mm; }
+  .rule { border:none; border-top:.3mm solid var(--ink); opacity:.25; margin:5mm 0; }
+  .cover { display:flex; flex-direction:column; justify-content:space-between; text-align:center; padding-top:44mm; }
+  .cover .word { font-size:24pt; font-weight:bold; letter-spacing:.3em; margin-top:9mm; }
+  .cover h1 { margin-top:14mm; }
+  .cover .sub { font-size:12pt; color:var(--ox); margin-top:5mm; line-height:1.5; }
+  table { width:100%; border-collapse:collapse; margin-top:3mm; }
+  th { font-family:Consolas,monospace; font-size:7.5pt; letter-spacing:.14em; text-transform:uppercase;
+       color:var(--brass); text-align:left; padding:1.8mm 2mm; border-bottom:.4mm solid var(--ink); }
+  /* Table padding is load-bearing on page 5, which carries the glossary and is the longest page
+     in every guide. The page is a fixed 296mm with overflow:hidden -- content past the bottom is
+     DELETED, not reflowed -- and Layer 8 was overflowing it. Anything that adds vertical space
+     here can silently cost a reader the last row of the glossary, so re-run
+     check_guide_overflow.py after touching this rule. */
+  td { font-size:9.5pt; line-height:1.36; padding:1.7mm 2mm; border-bottom:.2mm solid rgba(20,17,12,.2); vertical-align:top; }
+  td.k { width:38mm; font-weight:bold; }
+  text { font-family:Consolas,"Courier New",monospace; }
+  .t  { font-size:9.2px; letter-spacing:.05em; fill:#14110C; }
+  .tb { font-size:9.2px; letter-spacing:.12em; fill:#B08A3E; }
+  .tx { font-size:9.2px; letter-spacing:.05em; fill:#6E1A18; }
+  .ts { font-size:8px;   letter-spacing:.05em; fill:#14110C; opacity:.8; }
+  .tw { font-size:9.2px; letter-spacing:.05em; fill:#F3EEE3; }
+  .tsw{ font-size:8px;   letter-spacing:.05em; fill:#F3EEE3; }
+  .tsb{ font-size:8px;   letter-spacing:.12em; fill:#B08A3E; }
+
+  .c { font-family:Consolas,monospace; font-size:7.6pt; white-space:nowrap; margin:0; line-height:1.35; overflow:hidden; }
+  .cmd { white-space:pre !important; overflow:hidden; padding:2.4mm 4mm; margin:2.4mm 0; line-height:1.5; }
+  .r { font-size:9pt; line-height:1.3; color:var(--ox); margin:0 0 1.5mm 0; }
+  .macrun p { font-size:9.6pt; line-height:1.4; margin-bottom:2mm; }
+  .macrun h3 { margin-top:4mm; }
+  .macrun .box p + p { margin-top:2mm; }
+  td { font-size:9.1pt; line-height:1.3; padding:1.4mm 2mm; }
+  p { font-size:10.3pt; line-height:1.46; margin-bottom:2.6mm; }
+  li { font-size:10.3pt; line-height:1.46; }
+  h3 { margin-top:5mm; }
+</style></head><body><div class="page cover"><div><svg width="132" height="132" viewBox="0 0 200 200" style="display:block;margin:0 auto"><circle cx="100" cy="100" r="90" fill="none" stroke="#14110C" stroke-width="3.15"/><circle cx="100" cy="100" r="50.4" fill="none" stroke="#14110C" stroke-width="18"/><circle cx="162.51" cy="35.26" r="10.35" fill="#6E1A18"/></svg><div class="word mono">Outliers</div><h1>The Rules</h1><div class="sub">Layer 2 of 8 &nbsp;&middot;&nbsp; Telling one person from another,<br>which is harder than it sounds.</div><div class="mono" style="font-size:10pt;letter-spacing:.3em;color:#F3EEE3;background:#6E1A18;display:inline-block;padding:2mm 6mm;margin-top:8mm">For Mac</div></div><div style="margin-bottom:15mm"><div class="mono" style="font-size:8.5pt;color:#B08A3E">Est. MMXXVI &nbsp;&middot;&nbsp; Outliers Accelerator</div></div></div><div class="page"><div class="label mono">Layer 2 &middot; The Rules</div><div class="pos"><svg viewBox="0 0 152 20" width="100%"><rect x="0" y="0" width="16" height="7" fill="#C9BCA0" stroke="#14110C" stroke-width="0.4"/><rect x="19" y="0" width="16" height="7" fill="#14110C" stroke="#14110C" stroke-width="0.4"/><rect x="38" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><rect x="57" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><rect x="76" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><rect x="95" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><rect x="114" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><rect x="133" y="0" width="16" height="7" fill="#E7DEC9" stroke="#14110C" stroke-width="0.4"/><text x="0" y="17" style="font-size:6px;letter-spacing:.14em;fill:#B08A3E">LAYER 2</text></svg></div><h2>Who is this?</h2><div class="deck">Every clever feature you add later has to start by asking that question. If it gets the wrong answer, everything after it is wrong too, and nothing reports it.</div><h3>What the last layer left you with</h3><p>You have a folder with one file per person in it. It works, and it will keep working right up until the moment 2 files describe the same human being. Nothing in your system currently prevents that, notices it, or could tell you which of the 2 is right.</p><h3>What this layer builds</h3><p>This layer gives your CRM a way to know that one person is one person, however their name happens to be written down that day. It also writes down the shape a record has to follow, in a form software can check, so a broken record gets refused as it is written rather than found months later.</p><figure><svg viewBox="0 0 560 176" width="100%"><defs><marker id="a2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#6E1A18"/></marker></defs>
+      <text class="tb" x="16" y="16">ONE PERSON, 4 WAYS OF WRITING THEM DOWN</text>
+      <g fill="#E7DEC9" stroke="#14110C" stroke-width="0.8">
+        <rect x="16" y="28" width="150" height="22"/><rect x="16" y="58" width="150" height="22"/>
+        <rect x="16" y="88" width="150" height="22"/><rect x="16" y="118" width="150" height="22"/>
+      </g>
+      <text class="ts" x="25" y="43">Rowan Ashdown</text>
+      <text class="ts" x="25" y="73">R. Ashdown</text>
+      <text class="ts" x="25" y="103">rowan@ashdown.example</text>
+      <text class="ts" x="25" y="133">"Row" on a meeting invite</text>
+      <g stroke="#6E1A18" stroke-width="1.1" fill="none" marker-end="url(#a2)">
+        <path d="M170 39 L232 76"/><path d="M170 69 L232 80"/>
+        <path d="M170 99 L232 86"/><path d="M170 129 L232 90"/>
+      </g>
+      <rect x="238" y="66" width="150" height="36" fill="#14110C"/>
+      <text class="tw" x="248" y="82">ONE IDENTIFIER</text>
+      <text class="tsb" x="248" y="96">the profile link</text>
+      <path d="M392 84 L428 84" stroke="#6E1A18" stroke-width="1.1" fill="none" marker-end="url(#a2)"/>
+      <rect x="434" y="56" width="112" height="56" fill="none" stroke="#14110C" stroke-width="1.3"/>
+      <text class="tb" x="443" y="76">ONE RECORD</text>
+      <text class="ts" x="443" y="92">every other spelling</text>
+      <text class="ts" x="443" y="104">kept alongside it</text>
+      <text class="ts" x="16" y="164">Match on the name instead, and 2 different people who share one get merged into a single record.</text>
+    </svg><div class="cap">4 ways in. One person out.</div></figure><div class="footer"><span class="mono">Layer 2 &middot; The Rules</span><span class="pgno">2</span><span class="mono">Outliers</span></div></div><div class="page"><div class="label mono">Layer 2 &middot; How it works</div><h2>How it works</h2><div class="deck">2 ideas, and the first one is the whole layer.</div>
+      <h3>1. One identifier decides who someone is</h3>
+      <p>A name is not an identifier. Names repeat, people change them, and the same person gets
+      written down 4 different ways by 4 different sources. What you need is one detail per
+      person that is unique to them and does not change: usually a profile link, sometimes an email
+      address.</p>
+      <p>Your system now picks that identifier first and treats everything else as decoration. Every
+      other spelling of their name is kept in a list beside it, so when any of those spellings turns
+      up later, the system knows where it belongs.</p>
+      <p><strong>Why it never guesses.</strong> If a name could be 2 different people, the system
+      refuses to answer rather than picking one. That is deliberate. Consider the alternative: a wrong merge welds 2 people's histories together, silently and
+      permanently, and you will not find out until you say the wrong words to someone.</p>
+      <h3>2. The shape of a record, written down where software can check it</h3>
+      <p>A rule that nothing checks will be broken without anyone noticing. Your system now keeps a short
+      description of what a record must contain, and anything writing to your CRM has to satisfy it
+      first. A record that is missing something gets refused at the moment it is written.</p>
+      <p>The same file also keeps the list of words your system is allowed to use for each idea, so
+      one idea never ends up with 5 names for it. It sounds fussy. It is what makes the difference between a CRM you can ask
+      questions of and a folder of notes.</p>
+      <h3>And 3 rules it never breaks</h3>
+      <ul>
+        <li><strong>Never delete a person.</strong> People come back. Records get set aside, not destroyed.</li>
+        <li><strong>Never store anything sensitive</strong> about someone's health, beliefs or politics.</li>
+        <li><strong>Never let an automation speak as you.</strong> That one becomes machinery in Layer 6.</li>
+      </ul><div class="footer"><span class="mono">Layer 2 &middot; The Rules</span><span class="pgno">3</span><span class="mono">Outliers</span></div></div><div class="page"><div class="label mono">Layer 2 &middot; Before you start</div><h2>Before you start on a Mac</h2><p>Everything in this guide is typed into <strong>Terminal</strong>, the Mac's window for typing commands instead of clicking. Press Command and Space together, type Terminal, and press Return.</p><p>This layer needs Python and git, which you set up for Layer 1 (its page "Before you start on a Mac"), and the layers before this one. It installs no add-ons, so it works with either Python a Mac may have.</p><h3>How to type the lines</h3><p>Where this guide shows several lines in a black box, type them one at a time: type the first, press Return, wait for it to finish and give you a fresh line, then type the next. The installer asks you questions. Each offers an answer in [square brackets]; press Return to take it, or type your own and press Return.</p><h3>Where your CRM is</h3><p>Layer 1 made your CRM at <strong>~/CRM</strong>: a folder called CRM in your home folder (the folder with your name and the house picture in Finder's sidebar). If you chose another folder in Layer 1, put your own folder wherever a line in this guide says ~/CRM. The installer finds your CRM by itself either way.</p><p><strong>Apple Silicon or Intel</strong> (the 2 kinds of chip a Mac can have; the Apple menu, then About This Mac, shows yours): the steps are the same on both, and both were tested.</p><p><strong>Tried only on test Macs.</strong> Mac test for this version not yet recorded.</p><div class="footer"><span class="mono">Layer 2 &middot; The Rules</span><span class="pgno">4</span><span class="mono">Outliers</span></div></div><div class="page"><div class="label mono">Layer 2 &middot; Install</div><h2>Build it</h2><div class="deck">3 lines, typed into Terminal. The last one asks you a few questions so what you get is yours, then does the work.</div><div class="cmd">git clone https://github.com/OUTLIERS-ai/outliers-crm-02-rules-mac<br>cd outliers-crm-02-rules-mac<br>python3 install.py</div><p>This layer needs Layer 1 already installed. It finds your CRM by itself and will tell you politely if it cannot.</p><h3>What it asks you, and why</h3><table><tr><th style="width:52mm">Question</th><th>What it changes</th></tr><tr><td class="k">Which detail will you always have for someone?</td><td>A profile link, an email address, or a phone number. Whichever you always end up with. This becomes how your system tells one person from another.</td></tr><tr><td class="k">Do you keep personal contacts in here too?</td><td>Friends and family often end up in the same system. If you say yes, they get marked as personal, and nothing commercial will ever touch them.</td></tr></table><h3>What you end up with</h3><ul><li>A written description of what a record must contain, in a file you can read and change.</li><li>A tool that answers <strong>who is this?</strong> for any name, link or address you give it.</li><li>Every record now carries the list of other names that same person is known by.</li></ul><div class="footer"><span class="mono">Layer 2 &middot; Install</span><span class="pgno">5</span><span class="mono">Outliers</span></div></div><div class="page"><div class="label mono">Layer 2 &middot; Finishing</div><h2>Now use it</h2><div class="deck">Ask your system who somebody is, 2 different ways, and watch one record come back.</div><p>Give your system the same person twice, written 2 different ways. Use their full name one time and their profile link the other.</p><p>The tools this layer installed live in a folder called <strong>_engine</strong> inside your CRM. In Terminal, go there first, then type the next 2 lines (if your CRM is not at ~/CRM, put your own folder in the cd line):</p><div class='cmd'>cd ~/CRM/_engine<br>python3 identity.py who "Rowan Ashdown"<br>python3 identity.py who "https://example.com/in/rashdown"</div><p>Both print the same record. Now open that person's file in Obsidian. Near the top is a line beginning <strong>aliases:</strong>. Add their nickname on a new line beneath it, save, and run <strong>python3 identity.py who</strong> again with the nickname. It finds them.</p><p>Every layer above this one depends on doing that reliably, thousands of times, without a human checking.</p><h3>If you already had something like this</h3><p>A test rather than an instruction. Take 2 records in your existing system that you suspect are the same person, and work out which one is correct. If you cannot do that quickly and confidently, this layer is doing real work for you.</p><hr class="rule"><h3>What this layer leaves unsolved</h3><p>Your records now have a shape and an identity, but nothing fills them in. Worse, the obvious details to write down about a person go out of date on their own: someone's job title is correct right up until they change roles, and nothing in the record knows that happened.</p><div class="box"><span class="mono">Next: Layer 3 &middot; What you store</span><p>Recording what happened instead of what is true today, so your CRM stops going stale the moment you look away from it.</p></div><h3>Words used in this guide</h3><table><tr><td class="k">Identifier</td><td>One detail that belongs to a person and does not change. Usually a profile link.</td></tr><tr><td class="k">Alias</td><td>Any other name or address the same person is known by.</td></tr><tr><td class="k">Schema</td><td>A written description of what a record must contain, in a form software can check.</td></tr><tr><td class="k">Record</td><td>One person's file in your CRM.</td></tr></table><div class="footer"><span class="mono">Layer 2 &middot; The Rules</span><span class="pgno">6</span><span class="mono">Outliers</span></div></div><div class="page"><div class="label mono">Layer 2 &middot; What was run on a Mac</div><div class="macrun"><h2>What was run on a Mac</h2><p>A <b>test Mac</b> is one of the Macs GitHub rents out by the minute to run a script.</p><p>Mac test for this version not yet recorded.</p><div class="box"><span class="mono">NOT RUN ON THE TEST MACS</span><p>The box asking to install the developer tools cannot appear on a test Mac, because GitHub's Macs already have them.</p><p>Opening your CRM in Obsidian. The test Macs have no Obsidian; the script read the folders and files the installer made instead.</p></div></div><div class="footer"><span class="mono">Layer 2 &middot; The Rules</span><span class="pgno">7</span><span class="mono">Outliers</span></div></div></body></html>
